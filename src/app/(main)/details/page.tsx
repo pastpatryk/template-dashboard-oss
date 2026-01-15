@@ -1,35 +1,40 @@
-import { siteConfig } from "@/app/siteConfig"
-import { Button } from "@/components/Button"
-import { ArrowAnimated } from "@/components/ui/icons/ArrowAnimated"
-import { TremorPlaceholder } from "@/components/ui/icons/TremorPlaceholder"
+"use client"
 
-export default function Example() {
+import { LineChart } from "@/components/LineChart"
+import { fleetDailyUsage } from "@/data/fleet-data"
+import { format } from "date-fns"
+
+const chartData = fleetDailyUsage.map((item) => ({
+  ...item,
+  formattedDate: format(new Date(item.date), "dd/MM"),
+}))
+
+const valueFormatter = (value: number) => {
+  return new Intl.NumberFormat("en-US").format(value) + " km"
+}
+
+export default function Details() {
   return (
     <>
       <h1 className="text-lg font-semibold text-gray-900 sm:text-xl dark:text-gray-50">
-        Details
+        Fleet Details
       </h1>
-      <div className="mt-4 sm:mt-6 lg:mt-10">
-        <div className="my-40 flex w-full flex-col items-center justify-center">
-          <TremorPlaceholder className="size-20 shrink-0" aria-hidden="true" />
-          <h2 className="mt-6 text-lg font-semibold sm:text-xl">
-            Want to get the full content?
-          </h2>
-          <p className="mt-3 max-w-md text-center text-gray-500">
-            Dashboard template crafted with React, Next.js and Tailwind CSS.
-            Ideal for providing analytics to your users.
-          </p>
-          <Button className="group mt-6" variant="secondary" asChild>
-            <a href={siteConfig.externalLink.blocks}>
-              Get full template here
-              <ArrowAnimated
-                className="stroke-gray-900 dark:stroke-gray-50"
-                aria-hidden="true"
-              />
-            </a>
-          </Button>
+      <section className="mt-4 sm:mt-6 lg:mt-10">
+        <h2 className="text-base font-semibold text-gray-900 dark:text-gray-50">
+          Daily Fleet Usage (Last 30 Days)
+        </h2>
+        <div className="mt-4">
+          <LineChart
+            data={chartData}
+            index="formattedDate"
+            categories={["Distance (km)"]}
+            colors={["indigo"]}
+            valueFormatter={valueFormatter}
+            className="h-72"
+            showLegend={false}
+          />
         </div>
-      </div>
+      </section>
     </>
   )
 }
