@@ -16,3 +16,15 @@ export type OverviewData = {
   "Sign ups": number
   Logins: number
 }
+
+export type Car = {
+  id: string
+  model: string
+  licensePlate: string
+  assignedDriver: string
+}
+
+export type FleetDailyUsage = {
+  date: string
+  "Distance (km)": number
+}
