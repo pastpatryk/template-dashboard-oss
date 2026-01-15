@@ -1,7 +1,6 @@
 import { WorkspaceInfoSection } from "@/components/ui/settings/WorkspaceInfoSection"
 import { ApiKeySection } from "@/components/ui/settings/ApiKeySection"
 import { BillingSection } from "@/components/ui/settings/BillingSection"
-import { UsersSection } from "@/components/ui/settings/UsersSection"
 
 export default function Settings() {
   return (
@@ -9,7 +8,6 @@ export default function Settings() {
       <WorkspaceInfoSection />
       <ApiKeySection />
       <BillingSection />
-      <UsersSection />
     </div>
   )
 }

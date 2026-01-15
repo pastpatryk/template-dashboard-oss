@@ -6,7 +6,12 @@ export const siteConfig = {
     home: "/",
     overview: "/overview",
     details: "/details",
+    users: "/users",
     settings: "/settings",
+  },
+  usersLinks: {
+    active: "/users/active",
+    invites: "/users/invites",
   },
   externalLink: {
     blocks: "https://blocks.tremor.so/templates#dashboard",

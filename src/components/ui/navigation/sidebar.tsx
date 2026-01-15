@@ -2,6 +2,7 @@
 import { siteConfig } from "@/app/siteConfig"
 import { cx, focusRing } from "@/lib/utils"
 import {
+  RiGroup2Line,
   RiHome2Line,
   RiLinkM,
   RiListCheck,
@@ -19,6 +20,7 @@ import { UserProfileDesktop, UserProfileMobile } from "./UserProfile"
 const navigation = [
   { name: "Overview", href: siteConfig.baseLinks.overview, icon: RiHome2Line },
   { name: "Details", href: siteConfig.baseLinks.details, icon: RiListCheck },
+  { name: "Users", href: siteConfig.baseLinks.users, icon: RiGroup2Line },
   {
     name: "Settings",
     href: siteConfig.baseLinks.settings,
@@ -54,6 +56,9 @@ export function Sidebar() {
   const isActive = (itemHref: string) => {
     if (itemHref === siteConfig.baseLinks.settings) {
       return pathname.startsWith("/settings")
+    }
+    if (itemHref === siteConfig.baseLinks.users) {
+      return pathname.startsWith("/users")
     }
     return pathname === itemHref || pathname.startsWith(itemHref)
   }
